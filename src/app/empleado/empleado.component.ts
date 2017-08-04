@@ -30,8 +30,8 @@ export class EmpleadoComponent{
     
 
     ngOnInit(){
-        console.log(this.empleado);
-        console.log(this.trabajadores);
+        //console.log(this.empleado);
+        //console.log(this.trabajadores);
     }
 
     cambiarExterno(valor){
