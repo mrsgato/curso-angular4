@@ -10,13 +10,17 @@
     </p>
     <p>
         <label>Hp</label>
-        <input type="text" name="hp" #hp="ngModel" [(ngModel)]="coche.hp" required>
-        {{coche.hp}}
+        <input type="text" name="hp" #hp="ngModel" [(ngModel)]="coche.hp" required pattern="[0-9]+">
+        <span *ngIf="hp.touched && !hp.valid">
+            El hp del coche es incorrecto
+        </span>
     </p>
     <p>
         <label>Color</label>
-        <input type="text" name="color" #color [(ngModel)]="coche.color" required>
-        {{coche.color}}
+        <input type="text" name="color" #color="ngModel" [(ngModel)]="coche.color" required pattern="[a-zA-Z#]+">
+        <span *ngIf="color.touched && !color.valid">
+            El color del coche es incorrecto
+        </span>
     </p>
   
     <input type="submit" value="Guardar">
