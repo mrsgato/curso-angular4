@@ -1,27 +1,64 @@
 <h1>Componente de coches</h1>
+<style>
+    div{
+        float:left;
+    }
+    .listado{
+        margin-left: 20px;
+    }
+    form{
+        width: 200px;
+    }
+    input[type="text"], span{
+        display: block;
+        width: 100%;
+    }
+</style>
+<div>
 
-<form #formCar="ngForm" (ngSubmit)="onSubmit()">
-    <p>
-        <label>Nombre</label>
-        <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="coche.nombre" required>
-        <span *ngIf="nombre.touched && !nombre.valid">
-            El nombre del coche es incorrecto
-        </span>
-    </p>
-    <p>
-        <label>Hp</label>
-        <input type="text" name="hp" #hp="ngModel" [(ngModel)]="coche.hp" required pattern="[0-9]+">
-        <span *ngIf="hp.touched && !hp.valid">
-            El hp del coche es incorrecto
-        </span>
-    </p>
-    <p>
-        <label>Color</label>
-        <input type="text" name="color" #color="ngModel" [(ngModel)]="coche.color" required pattern="[a-zA-Z#]+">
-        <span *ngIf="color.touched && !color.valid">
-            El color del coche es incorrecto
-        </span>
-    </p>
-  
-    <input type="submit" value="Guardar">
-</form>
+    <form #formCar="ngForm" (ngSubmit)="onSubmit(); formCar.reset();">
+        <p>
+            <label>Nombre</label>
+            <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="coche.nombre" required>
+            <span *ngIf="nombre.touched && !nombre.valid">
+                El nombre del coche es incorrecto
+            </span>
+        </p>
+        <p>
+            <label>HP</label>
+            <input type="text" name="hp" #hp="ngModel" [(ngModel)]="coche.hp" required pattern="[0-9]+">
+            <span *ngIf="hp.touched && !hp.valid">
+                El hp del coche es incorrecto
+            </span>
+        </p>
+        <p>
+            <label>Color</label>
+            <input type="text" name="color" #color="ngModel" [(ngModel)]="coche.color" required pattern="[a-zA-Z#]+">
+            <span *ngIf="color.touched && !color.valid">
+                El color del coche es incorrecto
+            </span>
+        </p>
+    
+        <input type="submit" value="Guardar" [disabled]="!formCar.form.valid">
+    </form>
+</div>
+    <div class="listado">
+        <h4>Listado de coches</h4>
+        <ul>
+            <li *ngFor="let coche of coches">
+                {{coche.nombre}} - {{coche.hp}} - {{coche.color}}
+            </li>
+        </ul>
+    </div>
+    <div class="listado">
+    <h3>Listado de articulos</h3>
+    <ul *ngIf="articulos">
+        <li *ngFor="let articulo of articulos">
+            {{articulo.title}}
+            -
+            {{articulo.id}}
+        </li>
+    </ul>
+    <span *ngIf="!arcitulos">Cargando listado....</span>
+    </div>
+    
